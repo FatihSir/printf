@@ -11,7 +11,8 @@ int _printf(const char *format, ...)
 		{"%d", print_d},
 		{"%c", print_char},
 		{"%i", print_int},
-		{"%%", percent}
+		{"%%", percent},
+		{"%!", excl}
 	};
 	const char *str = format;
 	va_list args;
@@ -29,7 +30,7 @@ int _printf(const char *format, ...)
 		}
 		if (str[i] == '%' && str[i + 1] != '\0')
 		{
-			for (j = 0; j < 5; ++j)
+			for (j = 0; j < 6; ++j)
 			{
 				if (str[i + 1] == tok[j].specifer[1])
 				{
