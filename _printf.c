@@ -1,46 +1,39 @@
+#include <stdarg.h>
 #include "main.h"
+#include <stdio.h>
+
 /**
-* _printf - a function that prints anything
-* @format:  is a list of types of arguments passed to the function*
-* Return: returns nothing
-*/
+ * _printf - Prints a formate string to the standard output
+ * @format: a string that contains both text and spercifiers
+ * Return: the total number of characters printed
+ */
 int _printf(const char *format, ...)
 {
-	p_dtype tok[] = {
-		{"%s", print_string},
-		{"%d", print_int},
-		{"%c", print_char},
-		{"%i", print_int}
-	};
-	const char *str = format;
+	const char *format_ptr = format;
 	va_list args;
-	int num_chars_printed = 0, i, j;
+	int count, num_chars_printed = 0, numarg;
 
 	va_start(args, format);
-	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
-		return (-1);
-	for (i = 0; str[i] != '\0'; ++i)
+
+	for (count = 0; *format_ptr != '\0'; ++format_ptr)
 	{
-		if (str[i] == '%')
+		if (*format_ptr != '%')
 		{
-			if (str[i + 1] == '%')
-			{
-				_putchar('%');
-			}
-			for (j = 0; j < 4 ; ++j)
-			{
-				if (str[i + 1] == tok[j].specifer[1])
-				{
-					tok[j].ops(args);
-				}
-			}
-			i++;
+			_putchar(*format_ptr);
+			num_chars_printed++;
+		}
+		else if (*(format_ptr + 1) == 's')
+		{
+			format_ptr++;
+			num_chars_printed += merstr(va_arg(args, char *), count);
 		}
 		else
 		{
-			_putchar(str[i]);
-			num_chars_printed++;
+			numarg = va_arg(args, int);
+			format_ptr++;
+			num_chars_printed += swistr(numarg, format_ptr);
 		}
+		count++;
 	}
 	va_end(args);
 	return (num_chars_printed);

@@ -1,29 +1,17 @@
-#ifndef main_h
-#define main_h
+#ifndef MAIN_H
+#define MAIN_H
 
 
-#include <stdio.h>
-#include <string.h>
-#include <stdarg.h>
-#include <stdlib.h>
-#include <unistd.h>
-
-/**
-* struct p_dtype - srtuct datatype
-*
-* @specifer: pointer to the format
-* @ops: function pointer to call a specific function based on format
-*/
-typedef struct p_dtype
-{
-	char *specifer;
-	void (*ops)(va_list);
-} p_dtype;
-
+int _printf(const char *str, ...);
+int _strlen(char *str);
 void printstr(char *str, int len);
+char *_strcom(char *str1, char *str2);
+int merstr(char *arg, int position);
 int _putchar(char c);
-int _printf(const char *format, ...);
-void print_char(va_list args);
-void print_string(va_list args);
-void print_int(va_list args);
+void print_int(int num);
+int num_digits(int num);
+int swistr(int arg, const char *format);
+
+
+
 #endif
