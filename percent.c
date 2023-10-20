@@ -5,9 +5,8 @@
 * Return: returns 1
 *
 */
-int percent(va_list args)
+int percent(void)
 {
-	va_arg(args, int);
 	_putchar('%');
 	return (1);
 }

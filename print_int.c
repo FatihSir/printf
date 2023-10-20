@@ -16,7 +16,7 @@ int print_int(va_list args)
 	if (num < 0)
 	{
 		_putchar('-');
-		num = -1 * num;
+		num = -num;
 		count++;
 	}
 	if (num == 0)

@@ -8,7 +8,7 @@ int _printf(const char *format, ...)
 {
 	p_dtype tok[] = {
 		{"%s", print_string}, {"%d", print_d}, {"%c", print_char},
-		{"%i", print_int}
+		{"%i", print_int}, {"%b", print_binary}
 	};
 	const char *s = format;
 	va_list args;
@@ -18,22 +18,22 @@ int _printf(const char *format, ...)
 	if (s == NULL || (s[0] == '%' && s[1] == '\0'))
 		return (-1);
 start:
-	for (; s[i] != '\0'; ++i)
+	while (s[i] != '\0')
 	{
 		if (s[i] != '%' || (s[i] == '%' && (s[i + 1] == '!' || s[i + 1] == 'K')))
 		{
 			_putchar(s[i]);
 			num++;
+			i++;
 		}
 		if (s[i] == '%' && s[i + 1] == '%')
 		{
-			_putchar('%');
 			i = i + 2;
-			++num;
+			num = num + percent();
 		}
 		if (s[i] == '%' && s[i + 1] != '\0')
 		{
-			for (j = 0; j < 4; ++j)
+			for (j = 0; j < 5; ++j)
 			{
 				if (s[i + 1] == tok[j].specifer[1])
 				{
