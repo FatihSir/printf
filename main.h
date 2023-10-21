@@ -28,5 +28,5 @@ int percent(void);
 int print_d(va_list args);
 int print_int(va_list args);
 int print_binary(va_list args);
-int print_pointer(va_list args);
+int print_uns(va_list args);
 #endif

@@ -8,7 +8,7 @@ int _printf(const char *format, ...)
 {
 	p_dtype tok[] = {
 		{"%s", print_string}, {"%d", print_d}, {"%c", print_char},
-		{"%i", print_int}, {"%b", print_binary}
+		{"%i", print_int}, {"%b", print_binary}, {"%u", print_uns}
 	};
 	const char *s = format;
 	va_list args;
@@ -33,7 +33,7 @@ start:
 		}
 		if (s[i] == '%' && s[i + 1] != '\0')
 		{
-			for (j = 0; j < 5; ++j)
+			for (j = 0; j < 6; ++j)
 			{
 				if (s[i + 1] == tok[j].specifer[1])
 				{
